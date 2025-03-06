@@ -14,21 +14,19 @@ async function fazendoRequisicao(lugar) {
     }
 }
 
-function criarItems({ current, location }) {
+function criarItems({ current, location, request }) {
     weatherDetails.innerHTML = '';
 
     const umidade = cadaItem('Umidade', current.humidity);
     const temperatura = cadaItem('Temperatura', current.temperature);
     const descricao = cadaItem('Descrição', current.weather_descriptions[0]);
     const velocidadeDoVento = cadaItem('Vento', current.wind_speed);
-    const estado = cadaItem('Estado', location.region);
-    const pais = cadaItem('Pais', location.country);
 
     document.getElementById('local').textContent = `${location.name}`;
     const icone = document.createElement('img');
     icone.src = current.weather_icons[0];
     icone.id = 'weather_icons';
-    weatherDetails.append(estado, pais, umidade, temperatura, velocidadeDoVento, descricao, icone);
+    weatherDetails.append(umidade, temperatura, velocidadeDoVento, descricao, icone);
 }
 
 function cadaItem(string, valor) {
